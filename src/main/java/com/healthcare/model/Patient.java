@@ -1,6 +1,7 @@
 package com.healthcare.model;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -10,6 +11,10 @@ public class Patient {
     @Id
     @GeneratedValue
     private Long patientId;
+
+    private String name;
+
+    private LocalDate dateOfBirth;
 
     @OneToMany(mappedBy = "patient")
     private List<Appointment> appointments;
