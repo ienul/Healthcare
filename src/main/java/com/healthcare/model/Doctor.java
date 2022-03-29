@@ -1,9 +1,13 @@
 package com.healthcare.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.List;
 @Entity
-
+@Getter
+@Setter
 public class Doctor {
     //availability (appointment), appointments, pricePerHour, name, specialization, patient list,
     @Id
@@ -26,6 +30,5 @@ public class Doctor {
 
     @OneToMany(mappedBy = "doctor")
     private List<Holiday> holidays;
-
 
 }
