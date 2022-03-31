@@ -8,26 +8,38 @@
 </head>
 <body>
 
-<form th:action="@{/admin/doctor}" method="post" th:object="${doctorDto}">
-    <div class="form-group">
-        <label>Doctor Name</label>
-        <input th:field="*{name}" type="text" class="form-control" placeholder="Enter doctor name">
-    </div>
-    <div class="form-group">
-        <label>Price per hour</label>
-        <input th:field="*{pricePerHour}" type="text" class="form-control" placeholder="Enter doctor name">
-    </div>
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">First</th>
+        <th scope="col">Last</th>
+        <th scope="col">Handle</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <th scope="row">1</th>
+        <td>Mark</td>
+        <td>Otto</td>
+        <td>@mdo</td>
+    </tr>
+    <tr>
+        <th scope="row">2</th>
+        <td>Jacob</td>
+        <td>Thornton</td>
+        <td>@fat</td>
+    </tr>
+    <tr>
+        <th scope="row">3</th>
+        <td>Larry</td>
+        <td>the Bird</td>
+        <td>@twitter</td>
+    </tr>
+    </tbody>
+</table>
 
-    <div class="form-group">
-        <label>Select Specialization</label>
-        <select th:field="*{specialization}" class="form-control">
-            <option th:each="availableSpecialization:${doctorDto.availableSpecializations}" th:value="${availableSpecialization}" th:text="${availableSpecialization}"></option>
-        </select>
-    </div>
 
-    <button type="submit" class="btn btn-primary">Submit</button>
-
-</form>
 
 
 

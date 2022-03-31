@@ -13,8 +13,6 @@ public class DoctorMapper {
         doctor.setName(doctorDto.getName());
         doctor.setPricePerHour(Float.valueOf(doctorDto.getPricePerHour()));
         return doctor;
-
     }
-
 
 }

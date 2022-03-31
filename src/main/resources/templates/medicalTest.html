@@ -8,22 +8,27 @@
 </head>
 <body>
 
-<form th:action="@{/admin/doctor}" method="post" th:object="${doctorDto}">
+<form th:action="@{/admin/medicalTest}" method="post" th:object="${medicalTestDto}">
     <div class="form-group">
-        <label>Doctor Name</label>
-        <input th:field="*{name}" type="text" class="form-control" placeholder="Enter doctor name">
+        <label>Medical Test Name</label>
+        <input th:field="*{name}" type="text" class="form-control" placeholder="Enter Medical Test name">
     </div>
     <div class="form-group">
-        <label>Price per hour</label>
-        <input th:field="*{pricePerHour}" type="text" class="form-control" placeholder="Enter doctor name">
+        <label>Date and time of test</label>
+        <input th:field="*{dateTime}" type="datetime-local" class="form-control" >
     </div>
 
     <div class="form-group">
-        <label>Select Specialization</label>
-        <select th:field="*{specialization}" class="form-control">
-            <option th:each="availableSpecialization:${doctorDto.availableSpecializations}" th:value="${availableSpecialization}" th:text="${availableSpecialization}"></option>
+        <label>Select Pacient</label>
+        <select th:field="*{patientId}" class="form-control">
+            <option th:each="patientDto:${medicalTestDto.patientDtos}" th:value="${patientDto.id}" th:text="${patientDto.name}"></option>
         </select>
     </div>
+    <div class="form-group">
+        <label>Result</label>
+        <input th:field="*{result}" type="text" class="form-control" placeholder="Test result">
+    </div>
+
 
     <button type="submit" class="btn btn-primary">Submit</button>
 
