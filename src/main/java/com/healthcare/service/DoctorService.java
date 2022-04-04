@@ -8,6 +8,8 @@ import com.healthcare.repository.DoctorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class DoctorService {
 
@@ -21,7 +23,16 @@ public class DoctorService {
 
         Doctor doctor = doctorMapper.map(doctorDto);
         doctorRepository.save(doctor);
+    }
+
+    public List<DoctorDto> getDoctorsList() {
+
+        List<Doctor> doctors = doctorRepository.findAll();
+
+        return  doctorMapper.map(doctors);
 
     }
+
+
 
 }

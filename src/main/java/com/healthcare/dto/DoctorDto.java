@@ -12,7 +12,8 @@ public class DoctorDto {
     private String name;
     private String pricePerHour;
     private String specialization;
-    private List<String> availableSpecializations;
+    private String id;
 
+    private List<String> availableSpecializations;
 
 }

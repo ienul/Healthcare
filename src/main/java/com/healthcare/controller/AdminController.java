@@ -63,6 +63,7 @@ public class AdminController {
     public String doctorPost(Model model, @ModelAttribute("doctorDto") DoctorDto doctorDto) {
         System.out.println(doctorDto.getName());
         System.out.println(doctorDto.getPricePerHour());
+        System.out.println(doctorDto.getSpecialization());
         doctorService.createDoctor(doctorDto);
         return "redirect:/admin/doctor";
     }

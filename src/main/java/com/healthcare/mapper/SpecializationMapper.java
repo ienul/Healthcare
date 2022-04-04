@@ -11,7 +11,17 @@ public class SpecializationMapper {
 
         Specialization specialization = new Specialization();
         specialization.setName(specializationDto.getName());
+
         return specialization;
+
     }
+
+//    public SpecializationDto map(Specialization specialization){
+//
+//        SpecializationDto specializationDto = new SpecializationDto();
+//        specializationDto.setId(specialization.getId());
+//
+//        return specializationDto;
+//    }
 
 }

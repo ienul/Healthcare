@@ -16,6 +16,7 @@ public class Doctor {
     private Long doctorId;
 
     private String name;
+
     @ManyToOne
     @JoinColumn
     private Specialization specialization;

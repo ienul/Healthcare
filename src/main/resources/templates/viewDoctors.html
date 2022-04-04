@@ -8,39 +8,34 @@
 </head>
 <body>
 
+<h1>Doctors List</h1>
 <table class="table">
     <thead>
     <tr>
-        <th scope="col">#</th>
-        <th scope="col">First</th>
-        <th scope="col">Last</th>
-        <th scope="col">Handle</th>
+
+        <th scope="col">Name</th>
+        <th scope="col">Specialization</th>
+        <th scope="col">Price/hour</th>
+        <th scope="col"></th>
     </tr>
     </thead>
     <tbody>
-    <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
+    <tr th:each="doctor : ${doctors}">
+        <td th:text=${doctor.name}></td>
+        <td th:text=${doctor.specialization}></td>
+        <td th:text=${doctor.pricePerHour}></td>
+        <td>
+            <form th:action="@{/patient/doctors/{id}(id=${doctor.id})}" method="get">
+                <input class="btn btn-primary" type="submit" value="Create Appointment">
+
+            </form>
+
+        </td>
     </tr>
-    <tr>
-        <th scope="row">2</th>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td>@fat</td>
-    </tr>
-    <tr>
-        <th scope="row">3</th>
-        <td>Larry</td>
-        <td>the Bird</td>
-        <td>@twitter</td>
-    </tr>
+
+
     </tbody>
 </table>
-
-
-
 
 
 

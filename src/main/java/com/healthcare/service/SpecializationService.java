@@ -23,4 +23,6 @@ public class SpecializationService {
        specializationRepository.save(specialization);
 
     }
+
+
 }
