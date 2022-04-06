@@ -12,6 +12,8 @@ public class PatientDto {
     private String name;
     private String dateOfBirth;
     private Long id;
+    private String email;
+    private String password;
 
 
 }

@@ -7,6 +7,7 @@ import com.healthcare.service.AppointmentDtoBuilder;
 import com.healthcare.service.AppointmentService;
 import com.healthcare.service.DoctorService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -65,13 +66,15 @@ public class PatientController {
     }
 
     @PostMapping("/doctors/{doctorId}/appointment")
-    public String doctorAppointmentPost(Model model, @PathVariable(value = "doctorId") String doctorId, @ModelAttribute(name = "appointment") AppointmentDto appointmentDto){
+    public String doctorAppointmentPost(@PathVariable(value = "doctorId") String doctorId,
+                                        @ModelAttribute(name = "appointment") AppointmentDto appointmentDto,
+                                        Authentication authentication){
         System.out.println("Am reusit pasul 2!");
-
-        appointmentService.createAppointment(appointmentDto);
+        System.out.println("Get Name este : " + authentication.getName());
+        String authenticatedUserEmail = authentication.getName();
+        appointmentService.createAppointment(appointmentDto, authenticatedUserEmail);
 
         return "redirect:/patient/doctors/" + doctorId;
     }
-
 
 }

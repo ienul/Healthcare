@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -7,6 +8,26 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a sec:authorize="hasRole('ROLE_PATIENT')" class="navbar-brand">I am a patient</a>
+    <a sec:authorize="hasRole('ROLE_DOCTOR')" class="navbar-brand">I am a doctor</a>
+    <a sec:authorize="hasRole('ROLE_ADMIN')" class="navbar-brand">I am an admin</a>
+    <a sec:authorize="isAnonymous()" class="navbar-brand">I am not authenticated</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+            <a sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item nav-link active" href="/admin/doctor">Create Doctor<span class="sr-only">(current)</span></a>
+            <a sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item nav-link" href="/admin/patient">Create Patient</a>
+            <a sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item nav-link" href="/admin/specialization">Create Specialization</a>
+            <a sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item nav-link " href="/admin/medicalTest">Create Medical Test</a>
+            <a sec:authorize="hasRole('ROLE_PATIENT')" class="nav-item nav-link " href="/patient/doctors">View Doctors</a>
+            <a sec:authorize="isAuthenticated()" class="nav-item nav-link " href="/logout">Logout</a>
+            <a sec:authorize="isAnonymous()" class="nav-item nav-link " href="/abc">Login</a>
+        </div>
+    </div>
+</nav>
 
 <form th:action="@{/admin/medicalTest}" method="post" th:object="${medicalTestDto}">
     <div class="form-group">

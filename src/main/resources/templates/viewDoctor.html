@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -11,26 +12,46 @@
     ? @{/patient/doctors/{id}(id=${appointment.doctorId})}
     : @{/patient/doctors/{id}/appointment(id=${appointment.doctorId})}">
 
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a sec:authorize="hasRole('ROLE_PATIENT')" class="navbar-brand">I am a patient</a>
+    <a sec:authorize="hasRole('ROLE_DOCTOR')" class="navbar-brand">I am a doctor</a>
+    <a sec:authorize="hasRole('ROLE_ADMIN')" class="navbar-brand">I am an admin</a>
+    <a sec:authorize="isAnonymous()" class="navbar-brand">I am not authenticated</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+            <a sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item nav-link active" href="/admin/doctor">Create Doctor<span class="sr-only">(current)</span></a>
+            <a sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item nav-link" href="/admin/patient">Create Patient</a>
+            <a sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item nav-link" href="/admin/specialization">Create Specialization</a>
+            <a sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item nav-link " href="/admin/medicalTest">Create Medical Test</a>
+            <a sec:authorize="hasRole('ROLE_PATIENT')" class="nav-item nav-link " href="/patient/doctors">View Doctors</a>
+            <a sec:authorize="isAuthenticated()" class="nav-item nav-link " href="/logout">Logout</a>
+            <a sec:authorize="isAnonymous()" class="nav-item nav-link " href="/abc">Login</a>
+        </div>
+    </div>
+</nav>
 <h1>Create an appointment to doctor unNume</h1>
 
 <form th:action="${url}" method="post" th:object="${appointment}">
     <div class="form-group">
         <label>Select Appointment Date</label>
-        <input th:field="*{date}" type="date" class="form-control" th:disabled="${appointment.date != null}">
+        <input th:field="*{date}" type="date" class="form-control" th:readonly="${appointment.date != null}">
     </div>
 
 
 
     <div th:if="${appointment.date != null}" class="form-group">
         <label>Select time interval</label>
-        <select class="form-control">
+        <select th:field="*{time}" class="form-control">
             <option th:each="timeInterval:${appointment.availableSlots}" th:value="${timeInterval}" th:text="${timeInterval}"></option>
         </select>
     </div>
 
     <div th:if="${appointment.date != null}" class="form-group">
         <label>Describe medical issue</label>
-        <textarea class="form-control"></textarea>
+        <textarea th:field="*{medicalIssue}" class="form-control"></textarea>
 
     </div>
     <a th:href = "@{/patient/doctors/{id}(id=${appointment.doctorId})}" th:if="${appointment.date != null}">BACK</a>

@@ -27,6 +27,9 @@ public class Appointment {
     @JoinColumn
     private Doctor doctor;
 
+
+    private String medicalIssue;
+
     @ElementCollection(targetClass = Diagnostic.class)
     @CollectionTable
     @Enumerated(EnumType.STRING)

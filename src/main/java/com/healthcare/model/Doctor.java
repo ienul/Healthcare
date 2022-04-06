@@ -16,11 +16,11 @@ public class Doctor {
     private Long doctorId;
 
     private String name;
+    private Float pricePerHour;
 
     @ManyToOne
     @JoinColumn
     private Specialization specialization;
-    private Float pricePerHour;
 
     @OneToMany(mappedBy = "doctor")
     private List<Appointment> appointments;
@@ -32,5 +32,9 @@ public class Doctor {
 
     @OneToMany(mappedBy = "doctor")
     private List<Holiday> holidays;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn
+    private User user;
 
 }

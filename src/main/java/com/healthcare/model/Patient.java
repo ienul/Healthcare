@@ -30,4 +30,8 @@ public class Patient {
     @OneToMany(mappedBy = "patient")
     private List<MedicalTest> medicalTests;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn
+    private User user;
+
 }
