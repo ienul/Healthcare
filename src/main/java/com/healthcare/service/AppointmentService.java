@@ -7,6 +7,7 @@ import com.healthcare.repository.AppointmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 
@@ -27,5 +28,11 @@ public class AppointmentService {
         Appointment appointment = optionalAppointment.get();
         appointmentRepository.save(appointment);
 
+    }
+
+    public List<AppointmentDto> getAppointmentsFor(String doctorEmail) {
+
+        List<Appointment> appointments = appointmentRepository.findAppointmentsByDoctorUserEmail(doctorEmail);
+        return appointmentMapper.map(appointments);
     }
 }

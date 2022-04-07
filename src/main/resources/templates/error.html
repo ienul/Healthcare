@@ -25,6 +25,7 @@
             <a sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item nav-link" href="/admin/specialization">Create Specialization</a>
             <a sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item nav-link " href="/admin/medicalTest">Create Medical Test</a>
             <a sec:authorize="hasRole('ROLE_PATIENT')" class="nav-item nav-link " href="/patient/doctors">View Doctors</a>
+            <a sec:authorize="hasRole('ROLE_DOCTOR')" class="nav-item nav-link " href="/doctor/appointments">View Appointments</a>
             <a sec:authorize="isAuthenticated()" class="nav-item nav-link " href="/logout">Logout</a>
             <a sec:authorize="isAnonymous()" class="nav-item nav-link " href="/abc">Login</a>
         </div>

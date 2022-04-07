@@ -14,6 +14,7 @@ public class AppointmentDto {
     private String date;
     private String time;
     private String medicalIssue;
+    private String patientName;
 
 
     private List<String> availableSlots;

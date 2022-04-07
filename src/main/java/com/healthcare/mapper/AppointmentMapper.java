@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -64,6 +66,25 @@ public class AppointmentMapper {
 
         LocalTime localTime = LocalTime.parse(startTime);
         return localTime;
+    }
+
+    public List<AppointmentDto> map(List<Appointment> appointments){
+        List<AppointmentDto> result = new ArrayList<>();
+        for(Appointment appointment: appointments){
+            AppointmentDto appointmentDto = map(appointment);
+            result.add(appointmentDto);
+        }
+        return result;
+    }
+
+    public AppointmentDto map(Appointment appointment){
+        AppointmentDto appointmentDto = new AppointmentDto();
+        appointmentDto.setDate(String.valueOf(appointment.getDateTime().toLocalDate()));
+        appointmentDto.setTime(String.valueOf(appointment.getDateTime().toLocalTime()));
+        appointmentDto.setDoctorName(appointment.getDoctor().getName());
+        appointmentDto.setMedicalIssue(appointment.getMedicalIssue());
+        appointmentDto.setPatientName(appointment.getPatient().getName());
+        return appointmentDto;
     }
 
 }
